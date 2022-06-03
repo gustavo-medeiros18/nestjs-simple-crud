@@ -13,4 +13,8 @@ export class ProductsService {
 
     return productId;
   }
+
+  getProducts() {
+    return [...this.products];
+  }
 }
