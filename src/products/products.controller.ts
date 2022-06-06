@@ -27,4 +27,15 @@ export class ProductsController {
   getProduct(@Param('id') Productid: string) {
     return this.productService.getSingleProduct(Productid);
   }
+
+  @Patch(':id')
+  updateProduct(
+    @Param('id') id: string,
+    @Body('title') title: string,
+    @Body('description') description: string,
+    @Body('price') price: number,
+  ) {
+    this.productService.updateProduct(id, title, description, price);
+    return null;
+  }
 }
