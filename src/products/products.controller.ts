@@ -22,7 +22,7 @@ export class ProductsController {
     const id = this.productService.insertProduct(title, description, price);
 
     return {
-      insertedId: id,
+      message: 'Created! ;)',
     };
   }
 

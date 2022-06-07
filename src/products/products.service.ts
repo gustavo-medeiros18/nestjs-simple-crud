@@ -10,12 +10,15 @@ export class ProductsService {
   ) {}
   products: Product[] = [];
 
-  insertProduct(title: string, description: string, price: number) {
-    /*const productId = Math.random().toString();
-  
-    this.products.push(newProduct);
+  async insertProduct(title: string, description: string, price: number) {
+    const newProduct = new this.productModel({
+      title,
+      description,
+      price,
+    });
 
-    return productId;*/
+    const result = await newProduct.save();
+    console.log(result);
   }
 
   getProducts() {
