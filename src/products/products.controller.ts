@@ -14,15 +14,19 @@ export class ProductsController {
   constructor(private readonly productService: ProductsService) {}
 
   @Post()
-  addProduct(
+  async addProduct(
     @Body('title') title: string,
     @Body('description') description: string,
     @Body('price') price: number,
   ) {
-    const id = this.productService.insertProduct(title, description, price);
+    const id = await this.productService.insertProduct(
+      title,
+      description,
+      price,
+    );
 
     return {
-      message: 'Created! ;)',
+      insertedId: id,
     };
   }
 

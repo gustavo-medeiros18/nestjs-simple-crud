@@ -18,7 +18,7 @@ export class ProductsService {
     });
 
     const result = await newProduct.save();
-    console.log(result);
+    return result.id;
   }
 
   getProducts() {
