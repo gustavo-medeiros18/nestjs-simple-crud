@@ -26,7 +26,12 @@ export class ProductsService {
 
   async getProducts() {
     const products = await this.productModel.find().exec();
-    return products as Product[];
+    return products.map((product) => ({
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+    }));
   }
 
   getSingleProduct(productId) {
