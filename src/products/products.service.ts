@@ -58,9 +58,12 @@ export class ProductsService {
     updatedProduct.save();
   }
 
-  deleteProduct(productId: string) {
-    /*const index = this.findProduct(productId)[1];
-    this.products.splice(index, 1);*/
+  async deleteProduct(productId: string) {
+    const result = await this.productModel.deleteOne({ _id: productId }).exec();
+
+    if (result.deletedCount === 0) {
+      throw new NotFoundException('Could not find product.');
+    }
   }
 
   private async findProduct(id: string) {

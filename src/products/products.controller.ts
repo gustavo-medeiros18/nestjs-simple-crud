@@ -42,7 +42,7 @@ export class ProductsController {
   }
 
   @Patch(':id')
-  async updateProduct( 
+  async updateProduct(
     @Param('id') id: string,
     @Body('title') title: string,
     @Body('description') description: string,
@@ -55,8 +55,10 @@ export class ProductsController {
   }
 
   @Delete(':id')
-  removeProduct(@Param('id') id: string) {
-    this.productService.deleteProduct(id);
-    return null;
+  async removeProduct(@Param('id') id: string) {
+    await this.productService.deleteProduct(id);
+    return {
+      message: 'Product deleted',
+    };
   }
 }
