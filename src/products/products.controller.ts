@@ -42,14 +42,16 @@ export class ProductsController {
   }
 
   @Patch(':id')
-  updateProduct(
+  async updateProduct( 
     @Param('id') id: string,
     @Body('title') title: string,
     @Body('description') description: string,
     @Body('price') price: number,
   ) {
-    this.productService.updateProduct(id, title, description, price);
-    return null;
+    await this.productService.updateProduct(id, title, description, price);
+    return {
+      message: 'Product updated',
+    };
   }
 
   @Delete(':id')
